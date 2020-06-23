@@ -10,7 +10,7 @@ import {
     CardSubtitle,
     Spinner,
 } from "reactstrap";
-import { Header } from "../components";
+import { Layout } from "../components";
 import { PostsApi } from "../api";
 
 class MainPage extends React.Component {
@@ -36,10 +36,7 @@ class MainPage extends React.Component {
     render() {
         const { status, posts } = this.state;
         return (
-            <>
-                <Container className="mb-4">
-                    <Header />
-                </Container>
+            <Layout>
                 <Container>
                     <Jumbotron>
                         <h1 className="display-3">Hello, world!</h1>
@@ -62,7 +59,7 @@ class MainPage extends React.Component {
                 <Container>
                     {status === "ready"
                         ? posts.map((post) => (
-                              <Card>
+                              <Card key={post.id}>
                                   <CardBody>
                                       <CardTitle>{post.title}</CardTitle>
                                       <CardSubtitle>Card subtitle</CardSubtitle>
@@ -76,7 +73,7 @@ class MainPage extends React.Component {
                         <Spinner style={{ width: "3rem", height: "3rem" }} />
                     ) : null}
                 </Container>
-            </>
+            </Layout>
         );
     }
 }
